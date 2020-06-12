@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { Observable, of } from 'rxjs';
 
 import { Hero } from './hero';
@@ -10,9 +11,10 @@ import { MessageService } from './message.service';
 })
 export class HeroService {
   getHeroes(): Observable<Hero[]> {
-    return HEROES;
+    this.messageService.add('HeroService: fetched heroes');
+    return of(HEROES);
   }
 
-  constructor(private messageService: MessageService) {} //service in service injected into the HeroesComponent
+  constructor(private messageService: MessageService) {} //service-in-service scenario => MessageService into the HeroService which is injected into the HeroesComponent
   
 }
