@@ -10,11 +10,12 @@ import { MessageService } from './message.service';
   providedIn: 'root',
 })
 export class HeroService {
+
+  constructor(private messageService: MessageService) {} //service-in-service scenario => MessageService into the HeroService which is injected into the HeroesComponent
+
   getHeroes(): Observable<Hero[]> {
     this.messageService.add('HeroService: fetched heroes');
     return of(HEROES);
   }
-
-  constructor(private messageService: MessageService) {} //service-in-service scenario => MessageService into the HeroService which is injected into the HeroesComponent
   
 }
