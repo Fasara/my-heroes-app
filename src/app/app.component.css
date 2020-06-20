@@ -20,9 +20,13 @@ h1 {
     color: #334953;
   }
   nav a:hover {
-    color: #039be5;
-    background-color: #cfd8dc;
+    color: white;
+    background-color: #e5146f;
   }
   nav a.active {
     color: #039be5;
+  }
+
+  a {
+    margin: 10px;
   }

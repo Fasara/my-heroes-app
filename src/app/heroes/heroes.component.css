@@ -17,9 +17,18 @@
   } 
 
   .heroes li:hover {
-    color: white;
     background-color: #e5146f;
     left: .1em;
+  }
+
+  .heroes a {
+    text-decoration: none;
+    display: block;
+    color:  #e5146f;
+  }
+
+  .heroes a:hover {
+    color: white;
   }
   
   .heroes li.selected {
@@ -40,5 +49,8 @@
     height: 1.8em;
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
+    margin-right: .8em;
+    min-width: 16px;
+    text-align: center;
   }
 
