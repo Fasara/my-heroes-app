@@ -18,21 +18,22 @@ export class HeroService {
     private messageService: MessageService) {} 
 
   getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(this.heroesUrl) //get heroes from the server
-    .pipe(
-      catchError(this.HandleError<Hero[]>('getHeroes', []))
+    return this.http.get<Hero[]>(this.heroesUrl).pipe( //gets heroes from the server
+      tap(_ => this.log('fetched heroes')),
+      catchError(this.handleError<Hero[]>('getHeroes', []))
     );
-
   }
-
+  /** GET hero by id. Will 404 if id not found */
   getHero(id: number): Observable<Hero> {
-    this.messageService.add(`HeroService: fetched hero
-    id=${id}` ); //send the message after fetching the hero
-    return of(HEROES.find(hero => hero.id === id));
+    const url = `${this.heroesUrl}/${id}`;
+    return this.http.get<Hero>(url).pipe(
+      tap(_ => this.log(`fetched hero id=${id}`)),
+      catchError(this.handleError<Hero>(`getHero id=${id}`))
+    );
   }
 
   private log(message: string) {
     this.messageService.add(`HeroService: ${message}`);
-  }  // this is wrapped in a private log since the Message service get called frequently 
+  }  // this is wrapped in a private log since the Message service gets called frequently 
  
 }
